@@ -20,19 +20,19 @@ app.get('/pengeluaran', (req, res) => {
     })
 });
 
-app.post('/pengeluaran/:id', (req, res) => {
-    const { id } = req.params;
-    const { item } = req.body;
+// app.post('/pengeluaran/:id', (req, res) => {
+//     const { id } = req.params;
+//     const { item } = req.body;
 
-    if (!item) {
-        res.status(418).send({ massage: 'Tolong isi Itemnya'})
-    };
+//     if (!item) {
+//         res.status(418).send({ massage: 'Tolong isi Itemnya'})
+//     };
 
-    res.send({
-        pengeluaran: `Pengeluaranmu untuk ${item} berada di ID : ${id}`,
-    })
+//     res.send({
+//         pengeluaran: `Pengeluaranmu untuk ${item} berada di ID : ${id}`,
+//     })
 
-});
+// });
 
 app.listen(
     port,
