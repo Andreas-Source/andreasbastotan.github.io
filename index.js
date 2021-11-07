@@ -1,38 +1,21 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 8080;
+const port = 8080;
+const authRoute = require('./routes/auth');
+const postRoute = require('./routes/posts');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-//middleware :helping the rest client to see the API
-app.use(express.json())
+dotenv.config();
 
-// //make a call to the API
-// app.get('/api', (req, res) => {
-//     const apiKey = req.query.apiKey;
+mongoose.connect(
+    process.env.DB_CONNECT,
+    () => console.log('Connected to the MongoDB')
+);
 
-//     // TODO validate api
-//     res.send({ data: "belajar masbro"});
-// });
-
-app.get('/pengeluaran', (req, res) => {
-    res.status(200).send({
-        nama: 'baju',
-        harga: '200.000'
-    })
-});
-
-// app.post('/pengeluaran/:id', (req, res) => {
-//     const { id } = req.params;
-//     const { item } = req.body;
-
-//     if (!item) {
-//         res.status(418).send({ massage: 'Tolong isi Itemnya'})
-//     };
-
-//     res.send({
-//         pengeluaran: `Pengeluaranmu untuk ${item} berada di ID : ${id}`,
-//     })
-
-// });
+app.use(express.json());
+app.use('/api/user', authRoute);
+app.use('/api/pengeluaran', postRoute);
 
 app.listen(
     port,
