@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const port = process.env.PORT || 8080;
 
 //middleware :helping the rest client to see the API
 app.use(express.json())
@@ -35,6 +35,6 @@ app.post('/pengeluaran/:id', (req, res) => {
 });
 
 app.listen(
-    PORT,
-    () => console.log('alive on http://localhost:',PORT)
+    port,
+    () => console.log(`alive on http://localhost:${port}`)
 );
