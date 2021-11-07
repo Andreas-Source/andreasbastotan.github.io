@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.PORT|| 8080;
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
 const mongoose = require('mongoose');
